@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Produit</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+   <header>
+    <h1>Ma boutique</h1>
+    <nav>
+        <ul> 
+            <li><a href="/index.html">Accueil</a></li>
+            <li><a href="/produits/catégories/categories.html">Produits</a></li>
+            <li><a href="/contact.html">Contact</a></li>
+        </ul>
+    </nav>
+</header>
+<main>
+ <h2>Nos produits</h2>
+ <div id="produits" class="products"></div>
+ <script>
+     let produits = [
+ {"nom":"vetement 1","prix":5, image:"/images/vetements/produit1.jpeg" },
+ {"nom":"vetement 2","prix":10, image:"/images/vetements/produit2.jpeg" },
+ {"nom":"vetement 3","prix":20, image:"/images/vetements/produit3.jpeg" },
+ {"nom":"vetement 4","prix":15, image:"/images/vetements/produit4.jpeg" },
+ {"nom":"vetement 5","prix":30, image:"/images/vetements/produit5.jpeg" },
+ {"nom":"vetement 6","prix":35, image:"/images/vetements/produit6.jpeg" },
+ {"nom":"vetement 7","prix":40, image:"/images/vetements/produit7.jpeg" },
+ {"nom":"vetement 8","prix":15, image:"/images/vetements/produit8.jpeg" }  
+];
+
+
+function afficherProduits() {
+ let produitsDiv = document.getElementById("produits");
+ if (!produitsDiv) return;
+
+ produitsDiv.innerHTML = "";
+ produits.forEach((produit, index) => {
+
+     let div = document.createElement("div");
+     div.classList.add("product");
+     div.innerHTML = `
+     <img src="${produit.image}" alt="${produit.nom}">
+     <h3>${produit.nom}</h3>
+     <p>Prix : ${produit.prix}$</p>
+   <button onclick="envoyerParEmail('${produit.nom}', '${produit.image}')">contactez nous</button>
+     `;
+     produitsDiv.appendChild(div);
+ });
+}
+
+function envoyerParEmail(nomProduit, image) {
+     let emailAdmin = "khewelk@gmail.com";  
+     let sujet = encodeURIComponent("Nouveau produit ");
+     let corps = encodeURIComponent(`Bonjour,\n\nje suis intéressé par ce produit: ${nomProduit}\n\nLien de l'image : ${image}`);
+     let mailtoLink = `mailto:${emailAdmin}?subject=${sujet}&body=${corps}`;
+     window.location.href = mailtoLink;
+ }
+
+ document.addEventListener("DOMContentLoaded",
+ afficherProduits);
+ </script>
+</body>
+</html>

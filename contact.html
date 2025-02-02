@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact</title>
+    <link rel="stylesheet" href="/style.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .contact-container {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            width: 100%;
+            max-width: 400%;
+            text-align: center;
+        }
+        h2 {
+            margin-bottom: 10px;
+            color: #333;
+        }
+        p {
+            color: #666;
+        }
+        .input-group {
+            margin-bottom: 15px;
+            text-align: left;
+        }
+        label {
+            font-weight: bold;
+            color: #444;
+        }
+        input, textarea {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        button {
+            background-color:#ff7e5f ;
+            color: white;
+            border: none;
+            padding: 12px;
+            font-size: 18px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: 0.3s;
+            margin-top: 10px;
+        }
+        button:hover {
+            background-color: #e66450;
+        }
+        #confirmationMessage {
+            margin-top: 15px;
+            font-size: 16px;
+            color: green;
+        }
+        .instagram-ntn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #E1306C;
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            padding: 10px;
+            margin-top: 15px;
+            border-radius: 5px;
+            transition: 0.3s;
+        }
+        .instagram-btn img {
+            width: 24px;
+            height: 24px;
+            margin-right: 10px;
+        }
+        .instagram-btn:hover {
+            background-color: #C21858;
+        }
+    </style>
+</head>
+<body>
+   <header>
+    <h1>Ma boutique</h1>
+    <nav>
+        <ul>
+            <li><a href="/index.html">Accueil</a></li>
+            <li><a href="/produits/catégories/categories.html">Produits</a></li>
+            <li><a href="/contact.html">Contact</a></li>
+        </ul>
+    </nav>
+   </header>
+   <main>
+    <div class="contact-container">
+        <h2>Contactez-nous</h2> 
+        <p>Remplissez le formulaire ci-dessous et nous pouvons
+             vous répondre rapidement</p>
+                    
+        <form id="contactForm">
+            <div class="input-group">
+                <label for="name">Nom :</label>
+                <input type="text" id="name" placeholder="Votre nom">
+            </div>
+            <div class="input-group">
+                <label for="email">Email :</label>
+                <input type="email" id="email" placeholder="Votre email">
+            </div>
+            <div class="input-group">
+                <label for="message">Message :</label>
+                <textarea id="message" rows="5" placeholder="Votre message"></textarea>
+            </div>
+            <button type="submit">Envoyer</button>
+            <p id="confirmationMessage"></p>
+        </form>
+        <a href="https://www.instagram.com/mec_bzr/" target="_blank"
+        class="instagram-btn">
+            <img src="/images/instagram-logo.jpeg" alt="Instagram Logo">
+        </a>
+    </div>
+    
+    <script>
+        document.getElementById("contactForm").addEventListener(
+            "submit", function(event) {
+                event.preventDefault();
+                let email = document.getElementById("email").value.trim();
+                let message = document.getElementById("message").value.trim();
+                let confirmationMessage = document.getElementById("confirmationMessage");
+                if (email === "" || message === "") {
+                    confirmationMessage.style.color = "red";
+                    confirmationMessage.textContent = "veuillez remplir tous les champs.";
+                    return;
+                }
+                let recipientEmail = "11khewel@gmail.com";
+                let subject = "Nouveau messsage de contact";
+                let mailtoLink =  `mailto:${recipientEmail}?subject=${encodeURIComponent(subject)}
+                &body=${encodeURIComponent("Email: " + email +"\n\nMessage:\n" + message)}`;
+                window.location.href = mailtoLink;
+                confirmationMessage.style.color = "green"
+                confirmationMessage.textContent = "Redirection vers votre boîte mail..."
+
+            });
+    </script>
+</body>
+</html>
